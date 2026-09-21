@@ -7,6 +7,8 @@ import { TabInsights } from "@/components/finance/parcelamento/TabInsights";
 import { ParcelamentoProvider, useParcelamentoContext } from "@/components/finance/parcelamento/ParcelamentoContext";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
+import { useLegacyIntegrations } from "@/hooks/useLegacyIntegrations";
+import { LegacyDataSourceNotice } from "@/components/finance/legacy/LegacyDataSourceNotice";
 
 function SyncButton() {
   const { sync, isSyncing, lastSyncedAt, hasData } = useParcelamentoContext();
@@ -36,9 +38,13 @@ function SyncButton() {
 }
 
 export default function ParcelamentoInteligente() {
+  const { legacyIntegrationsEnabled } = useLegacyIntegrations();
+
   return (
     <ParcelamentoProvider>
       <div className="space-y-6">
+        {!legacyIntegrationsEnabled && <LegacyDataSourceNotice />}
+
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
