@@ -87,11 +87,13 @@ export function parseValor(bruto: unknown): number | null {
   const temVirgula = s.includes(",");
   const temPonto = s.includes(".");
   if (temVirgula && temPonto) {
-    // o último separador é o decimal
-    if (s.lastIndexOf(",") > s.lastIndexOf(".")) s = s.replace(/\./g, "").replace(",", ".");
-    else s = s.replace(/,/g, "");
+    // o último separador é o decimal, os anteriores são milhares
+    const corte = Math.max(s.lastIndexOf(","), s.lastIndexOf("."));
+    s = s.slice(0, corte).replace(/[.,]/g, "") + "." + s.slice(corte + 1);
   } else if (temVirgula) {
-    s = s.replace(/\./g, "").replace(",", ".");
+    // "1.234,56" vem sem pontos aqui; "5,109,00" é um erro de leitura em que só a última é decimal
+    const corte = s.lastIndexOf(",");
+    s = s.slice(0, corte).replace(/,/g, "") + "." + s.slice(corte + 1);
   } else {
     // só pontos: pode ser separador de milhar (1.234) ou decimal (1234.56)
     const partes = s.split(".");
@@ -99,6 +101,7 @@ export function parseValor(bruto: unknown): number | null {
       s = partes.join("");
     }
   }
+
   const n = Number(s);
   if (!Number.isFinite(n)) return null;
   return negativo && n > 0 ? -n : n;
