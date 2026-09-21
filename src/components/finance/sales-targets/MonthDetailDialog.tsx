@@ -275,7 +275,7 @@ export const MonthDetailDialog = ({
                         <p>Desp. Previstas: {formatCurrency(expenseBreakdown.plannedExpense)}</p>
                         <p>Outras Desp.: {formatCurrency(expenseBreakdown.otherExpense)}</p>
                         <p>Forecast Desp.: {formatCurrency(expenseBreakdown.forecastExpense)}</p>
-                        <p>Taxa Hubla: {formatCurrency(expenseBreakdown.platformFee)}</p>
+                        <p>Taxa da plataforma: {formatCurrency(expenseBreakdown.platformFee)}</p>
                         <p>Impostos: {formatCurrency(expenseBreakdown.tax)}</p>
                       </div>
                     }
@@ -318,7 +318,7 @@ export const MonthDetailDialog = ({
                   tooltipContent={
                     <div className="space-y-1">
                       <p>Despesas Operacionais: {formatCurrency(expenseBreakdown.expense + expenseBreakdown.plannedExpense + expenseBreakdown.otherExpense + expenseBreakdown.forecastExpense)}</p>
-                      <p>Taxa Hubla: {formatCurrency(expenseBreakdown.platformFee)}</p>
+                      <p>Taxa da plataforma: {formatCurrency(expenseBreakdown.platformFee)}</p>
                       <p>Impostos: {formatCurrency(expenseBreakdown.tax)}</p>
                       <p>Distribuição: {formatCurrency(expenseBreakdown.distribution)}</p>
                     </div>

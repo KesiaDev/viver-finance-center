@@ -265,7 +265,7 @@ export const ScenarioSimulatorTable = ({
       const forecastExpense = Number(p.forecast_expense) || 0;
       const distribution = Number(p.distribution) || 0;
       
-      // Taxa Hubla: 
+      // Taxa da plataforma: 
       // - Passado: usa valor do banco
       // - Atual: calcula apenas sobre Forecast Rec. (igual ao Planejamento)
       // - Futuro: calcula sobre Total Entrada
@@ -284,10 +284,10 @@ export const ScenarioSimulatorTable = ({
       const taxBreakdown = calculateTaxForMonth(monthDate, monthsDataForTax);
       const tax = monthType === 'future' ? taxBreakdown.total : (Number(p.tax) || 0);
 
-      // Total de Despesas = Despesas Operacionais + Taxa Hubla + Impostos
+      // Total de Despesas = Despesas Operacionais + Taxa da plataforma + Impostos
       const totalExpense = expense + plannedExpense + otherExpense + forecastExpense + platformFee + tax;
 
-      // Líquido = Total Entrada - Taxa Hubla
+      // Líquido = Total Entrada - Taxa da plataforma
       const netEntry = totalEntry - platformFee;
 
       // Saldo Inicial - usar sempre initial_balance do Planejamento para o primeiro mês
@@ -510,7 +510,7 @@ export const ScenarioSimulatorTable = ({
                 Metas e Cenário Mensal - {selectedYear}
               </CardTitle>
               <CardDescription className="mt-1">
-                Meta Anual: {formatCurrency(annualTarget)} | Taxa Hubla: {hublaFeePercentage}% | ML Alvo: {targetMLPercentage}% | À Vista: {cashPercentage}%
+                Meta Anual: {formatCurrency(annualTarget)} | Taxa da plataforma: {hublaFeePercentage}% | ML Alvo: {targetMLPercentage}% | À Vista: {cashPercentage}%
               </CardDescription>
             </div>
 
@@ -805,7 +805,7 @@ export const ScenarioSimulatorTable = ({
                                       <p>Desp. Previstas: {formatCurrency(m.expenseBreakdown.plannedExpense)}</p>
                                       <p>Outras Despesas: {formatCurrency(m.expenseBreakdown.otherExpense)}</p>
                                       <p>Forecast Despesas: {formatCurrency(m.expenseBreakdown.forecastExpense)}</p>
-                                      <p>Taxa Hubla: {formatCurrency(m.expenseBreakdown.platformFee)}</p>
+                                      <p>Taxa da plataforma: {formatCurrency(m.expenseBreakdown.platformFee)}</p>
                                       <p>Impostos: {formatCurrency(m.expenseBreakdown.tax)}</p>
                                     </div>
                                   </TooltipContent>
@@ -928,7 +928,7 @@ export const ScenarioSimulatorTable = ({
                   <span className="font-semibold">{formatCurrency(totals.totalEntry)}</span>
                 </div>
                 <div className="text-orange-500">
-                  Taxa Hubla: -{formatCurrency(totals.platformFee)}
+                  Taxa da plataforma: -{formatCurrency(totals.platformFee)}
                 </div>
                 <div className="text-teal-500 font-bold">
                   Líquido: {formatCurrency(totals.netEntry)}

@@ -351,7 +351,7 @@ const MetasVendas = () => {
                    (Number(p.forecast_expense) || 0);
     }, 0);
 
-    // Taxa Hubla: dinâmica para futuros, do banco para passados/atuais
+    // Taxa da plataforma: dinâmica para futuros, do banco para passados/atuais
     const totalPlatformFee = yearPlanning.reduce((sum, p) => {
       const monthType = getMonthType(p.month);
       
@@ -380,7 +380,7 @@ const MetasVendas = () => {
       return sum + (Number(p.distribution) || 0);
     }, 0);
 
-    // Despesas para ML = Base + Taxa Hubla + Impostos (SEM Distribuição)
+    // Despesas para ML = Base + Taxa da plataforma + Impostos (SEM Distribuição)
     const totalExpenseForML = totalExpenseBase + totalPlatformFee + totalTax;
 
     // Geração de Caixa para ML = Receitas - Despesas Operacionais
@@ -1279,11 +1279,11 @@ const MetasVendas = () => {
               </div>
             </div>
             
-            {/* Linha 2: Taxa Hubla */}
+            {/* Linha 2: Taxa da plataforma */}
             <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="text-sm font-medium text-destructive">Taxa Hubla ({HUBLA_FEE_PERCENTAGE}%)</p>
+                  <p className="text-sm font-medium text-destructive">Taxa da plataforma ({HUBLA_FEE_PERCENTAGE}%)</p>
                   <p className="text-xs text-muted-foreground">Taxa da plataforma de vendas</p>
                 </div>
                 <p className="text-xl font-bold text-destructive">- {formatCurrency(hublaFeeAmount)}</p>
