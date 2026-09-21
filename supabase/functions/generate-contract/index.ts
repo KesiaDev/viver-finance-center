@@ -139,7 +139,7 @@ Deno.serve(async (req) => {
       const hoje = new Date();
       const meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
       const dataAssinatura = `${hoje.getDate()} de ${meses[hoje.getMonth()]} de ${hoje.getFullYear()}`;
-      return `CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\nPelo presente instrumento particular de contrato de prestação de serviços ("Contrato"), de um lado:\n\nCONTRATANTE: VIVER DE IA LTDA., pessoa jurídica de direito privado, inscrita no CNPJ sob nº 52.246.066/0001-60, com sede na Rua Alfredo Egídio de Souza Aranha, nº 100, Bloco B - 4º Andar, Chácara Santo Antônio, São Paulo/SP, CEP 04726-170, neste ato representada por seu sócio-administrador, Yago Martins Nunes.\n\nCONTRATADA: ${solicitacao.nome}, ${solicitacao.cnpj ? `pessoa jurídica de direito privado, inscrita no CNPJ sob nº ${solicitacao.cnpj}, ` : ""}com endereço em ${solicitacao.endereco}.\n\nSão Paulo, ${dataAssinatura}.`;
+      return `CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\nPelo presente instrumento particular de contrato de prestação de serviços ("Contrato"), de um lado:\n\nCONTRATANTE: LLMIDIA - CURSOS E TREINAMENTOS LTDA., pessoa jurídica de direito privado, inscrita no CNPJ sob nº 28.469.058/0001-06, com sede na Av. Presidente Juscelino Kubitschek de Oliveira, nº 3161, Apt 410, Centro, Pelotas/RS, CEP 96.020-045, neste ato representada por seu sócio-administrador, ${REPRESENTANTE_NOME}.\n\nCONTRATADA: ${solicitacao.nome}, ${solicitacao.cnpj ? `pessoa jurídica de direito privado, inscrita no CNPJ sob nº ${solicitacao.cnpj}, ` : ""}com endereço em ${solicitacao.endereco}.\n\nPelotas, ${dataAssinatura}.`;
     };
 
     // PREVIEW MODE
