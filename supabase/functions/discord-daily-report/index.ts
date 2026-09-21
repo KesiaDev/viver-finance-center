@@ -223,7 +223,7 @@ function createMonthlyEmbed(
       },
     ],
     footer: {
-      text: "LLMIDA Central Financeira • Relatório Automático",
+      text: "LLMIDIA Central Financeira • Relatório Automático",
     },
     timestamp: new Date().toISOString(),
   };
@@ -309,7 +309,7 @@ function createAnnualEmbed(
       },
     ],
     footer: {
-      text: "LLMIDA Central Financeira • Relatório Anual",
+      text: "LLMIDIA Central Financeira • Relatório Anual",
     },
     timestamp: new Date().toISOString(),
   };
