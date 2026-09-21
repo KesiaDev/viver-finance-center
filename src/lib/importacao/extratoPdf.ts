@@ -277,10 +277,16 @@ export function parseExtratoWise(texto: string, moeda: Moeda = "EUR"): Resultado
   return { linhas, ancoras: [], saldoFinal, dataSaldoFinal, moeda, avisos };
 }
 
-export function parseExtratoPdf(texto: string, moeda: Moeda, banco?: BancoExtrato | null): ResultadoExtrato {
+export function parseExtratoPdf(
+  texto: string,
+  moeda: Moeda,
+  banco?: BancoExtrato | null,
+  cnpjsConhecidos: Record<string, string> = {},
+): ResultadoExtrato {
   const alvo = banco ?? detetarBanco(texto);
   if (alvo === "wise") return parseExtratoWise(texto, moeda);
-  if (alvo === "santander") return parseExtratoSantander(texto, moeda);
+  if (alvo === "santander") return parseExtratoSantander(texto, moeda, cnpjsConhecidos);
   if (alvo === "itau") return parseExtratoItau(texto, moeda);
   return { linhas: [], ancoras: [], avisos: ["Não reconheci o banco deste extrato."] };
 }
+
