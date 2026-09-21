@@ -29,6 +29,9 @@ export function normalizarContraparte(input?: string | null): string {
     txt = txt.split("*")[0];
   }
 
+  // remove códigos de reserva colados à companhia aérea (AZULYFHHNB -> AZUL)
+  txt = txt.replace(/\bAZUL[A-Z0-9]{4,}\b/g, "AZUL");
+
   // remove códigos numéricos colados (AZUL12345 -> AZUL)
   txt = txt.replace(/\b([A-Z]{3,})\d{3,}\b/g, "$1");
 
