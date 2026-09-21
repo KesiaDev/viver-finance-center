@@ -351,7 +351,7 @@ const Auth = () => {
               <Input
                 id="email"
                 type="email"
-                placeholder={isFirstAccess ? "seu@email.com" : "seu@viverdeia.ai"}
+                placeholder={isFirstAccess ? "seu@email.com" : "seu@llmidiaco.com"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
