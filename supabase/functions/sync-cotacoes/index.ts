@@ -59,14 +59,18 @@ Deno.serve(async (req) => {
 
     for (const moeda of moedas) {
       const rows = await buscarPtax(moeda, de, ate);
+      // o Banco Central publica vários boletins por dia: fica o último de cada dia
+      const porDia = new Map<string, { hora: string; taxa: number }>();
       for (const r of rows) {
         if (!r?.cotacaoVenda || !r?.dataHoraCotacao) continue;
-        registos.push({
-          data: r.dataHoraCotacao.slice(0, 10),
-          moeda,
-          taxa_brl: Number(r.cotacaoVenda),
-          fonte: "bcb_ptax",
-        });
+        const dia = r.dataHoraCotacao.slice(0, 10);
+        const anterior = porDia.get(dia);
+        if (!anterior || r.dataHoraCotacao > anterior.hora) {
+          porDia.set(dia, { hora: r.dataHoraCotacao, taxa: Number(r.cotacaoVenda) });
+        }
+      }
+      for (const [data, v] of porDia) {
+        registos.push({ data, moeda, taxa_brl: v.taxa, fonte: "bcb_ptax" });
       }
     }
 
@@ -76,6 +80,7 @@ Deno.serve(async (req) => {
         .upsert(registos, { onConflict: "data,moeda,fonte" });
       if (error) throw error;
     }
+
 
     return new Response(
       JSON.stringify({ ok: true, periodo: { de, ate }, gravadas: registos.length }),
