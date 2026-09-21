@@ -121,7 +121,7 @@ export function parseValorBr(valor: string): number {
 export function construirRegras(linhas: LinhaCsv[]): ResultadoImportacao {
   const grupos = new Map<
     string,
-    { categorias: Map<string, number>; centro: Map<string, number>; origens: Set<string>; empresa: "infoeditora" | null; total: number }
+    { categorias: Map<string, number>; centro: Map<string, number>; origens: Set<string>; empresa: "infoeditora" | null; infoeditora: number; total: number }
   >();
   const ignoradasMap = new Map<string, LinhaIgnorada>();
 
@@ -144,7 +144,7 @@ export function construirRegras(linhas: LinhaCsv[]): ResultadoImportacao {
 
     let grupo = grupos.get(contraparte);
     if (!grupo) {
-      grupo = { categorias: new Map(), centro: new Map(), origens: new Set(), empresa: empresaDestino, total: 0 };
+      grupo = { categorias: new Map(), centro: new Map(), origens: new Set(), empresa: null, infoeditora: 0, total: 0 };
       grupos.set(contraparte, grupo);
     }
     grupo.total += 1;
@@ -154,7 +154,9 @@ export function construirRegras(linhas: LinhaCsv[]): ResultadoImportacao {
       grupo.centro.set(cc, (grupo.centro.get(cc) ?? 0) + 1);
     }
     if (linha.origem?.trim()) grupo.origens.add(linha.origem.trim());
-    if (empresaDestino) grupo.empresa = empresaDestino;
+    if (empresaDestino) grupo.infoeditora += 1;
+    // só atribui a empresa destino quando TODAS as linhas da contraparte são dessa empresa
+    grupo.empresa = grupo.infoeditora === grupo.total ? "infoeditora" : null;
   }
 
   const regras: RegraProposta[] = [];
