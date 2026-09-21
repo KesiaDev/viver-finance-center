@@ -1597,6 +1597,45 @@ export type Database = {
         }
         Relationships: []
       }
+      hotmart_webhook_events: {
+        Row: {
+          created_at: string
+          error: string | null
+          event: string | null
+          event_id: string | null
+          id: string
+          occurred_at: string | null
+          payload: Json
+          processed: boolean
+          processed_at: string | null
+          version: string | null
+        }
+        Insert: {
+          created_at?: string
+          error?: string | null
+          event?: string | null
+          event_id?: string | null
+          id?: string
+          occurred_at?: string | null
+          payload: Json
+          processed?: boolean
+          processed_at?: string | null
+          version?: string | null
+        }
+        Update: {
+          created_at?: string
+          error?: string | null
+          event?: string | null
+          event_id?: string | null
+          id?: string
+          occurred_at?: string | null
+          payload?: Json
+          processed?: boolean
+          processed_at?: string | null
+          version?: string | null
+        }
+        Relationships: []
+      }
       hubla_webhook_events: {
         Row: {
           amount_cents: number | null
