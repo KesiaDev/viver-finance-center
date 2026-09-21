@@ -165,18 +165,30 @@ export function parseExtratoSantander(texto: string, moeda: Moeda = "BRL"): Resu
     const saldo = parseValor(saldoTxt);
     if (valor == null) continue;
 
-    const descricao = limparCpfCnpj(m[2].slice(0, m[2].lastIndexOf(valorTxt)))
+    const trecho = m[2].slice(0, m[2].lastIndexOf(valorTxt));
+    const doc = trecho.match(/\b(\d{11,14})\b/)?.[1] ?? null;
+    const descricao = limparCpfCnpj(trecho)
       .replace(/\b\d{10,}\b/g, " ")
       .replace(/\s+/g, " ")
       .trim();
 
+    // "Ted Recebida", "Pix Recebido"… são o tipo do movimento, não a contraparte
+    const semTipo = descricao
+      .replace(/^(Ted Recebida|Ted Enviada|Pix Recebido|Pix Enviado|Debito Aut\.?|Credito|Deposito)\s*/i, "")
+      .trim();
+    const contraparte =
+      normalizarContraparte(semTipo) ||
+      (doc && cnpjsConhecidos[doc] ? normalizarContraparte(cnpjsConhecidos[doc]) : "") ||
+      "DESCONHECIDO";
+
     linhas.push({
       data,
       descricao: descricao || "(sem descrição)",
-      contraparte: normalizarContraparte(descricao) || "DESCONHECIDO",
+      contraparte,
       valor,
       moeda,
     });
+
     if (saldo != null) {
       ancoras.push({ data, saldo });
       saldoFinal = saldoFinal ?? saldo;
