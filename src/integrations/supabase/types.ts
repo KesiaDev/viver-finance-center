@@ -3731,6 +3731,7 @@ export type Database = {
         }
         Returns: undefined
       }
+      dump_schema_ddl: { Args: never; Returns: string }
       get_budget_vs_actual: {
         Args: { p_end_date: string; p_start_date: string }
         Returns: {
