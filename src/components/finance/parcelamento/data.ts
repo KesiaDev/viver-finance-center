@@ -174,7 +174,7 @@ export const insightsDevedores = [
   {
     tipo: "info" as const,
     icone: "💡",
-    texto: "100% das compras foram feitas via cartão de crédito e todas referentes ao produto Plataforma Viver de IA.",
+    texto: "100% das compras foram feitas via cartão de crédito e todas referentes ao produto Plataforma LLMIDIA.",
   },
 ];
 
@@ -185,7 +185,7 @@ export const riscosCriticos = [
   "Inadimplência acelerando: A taxa subiu 20x em 8 meses (1.5% → 29%). Se mantiver a trajetória, pode ultrapassar 35% até abril/26.",
   "Churn massivo: 35.5% das faturas já emitidas foram canceladas. O cancelado (R$ 1.36M) é 76% do pago (R$ 1.79M).",
   "Receita futura em risco: R$ 4.73M de renovações esperadas, mas o histórico de churn sugere que 35-50% pode ser perdido.",
-  "Concentração extrema: 100% da base é de um único produto (Viver de IA), criando risco sistêmico.",
+  "Concentração extrema: 100% da base é de um único produto (LLMIDIA), criando risco sistêmico.",
 ];
 
 export const oportunidades = [
