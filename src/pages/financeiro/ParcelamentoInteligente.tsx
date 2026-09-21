@@ -53,7 +53,7 @@ export default function ParcelamentoInteligente() {
               Dashboard analítico de pagamentos recorrentes
             </p>
           </div>
-          <SyncButton />
+          {legacyIntegrationsEnabled && <SyncButton />}
         </div>
 
         {/* Tabs */}
