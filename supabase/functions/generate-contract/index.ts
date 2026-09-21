@@ -6,6 +6,11 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Representante legal da LLMIDIA que assina os contratos
+const REPRESENTANTE_NOME = Deno.env.get("CONTRATO_REPRESENTANTE_NOME") ?? "Luciano Larrossa";
+const REPRESENTANTE_EMAIL = Deno.env.get("CONTRATO_REPRESENTANTE_EMAIL") ?? "luciano@llmidiaco.com";
+
+
 function isHtmlContent(text: string): boolean {
   const trimmed = text.trim();
   return (
