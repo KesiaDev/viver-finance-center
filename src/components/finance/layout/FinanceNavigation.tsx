@@ -9,6 +9,8 @@ import {
   CreditCard,
   Bug,
   Scale,
+  ListChecks,
+  Filter,
 } from "lucide-react";
 import { useLegacyIntegrations } from "@/hooks/useLegacyIntegrations";
 
@@ -22,6 +24,8 @@ const financeNavItems = [
   
   { icon: CreditCard, label: "Parcelamento Inteligente", path: "/financeiro/parcelamento" },
   { icon: Scale, label: "Receitas e Despesas", path: "/financeiro/orcado-realizado" },
+  { icon: ListChecks, label: "Classificar", path: "/financeiro/classificar" },
+  { icon: Filter, label: "Regras", path: "/financeiro/regras" },
   { icon: Bug, label: "API Marvee", path: "/financeiro/marvee-test", legacyOnly: true },
 ];
 
