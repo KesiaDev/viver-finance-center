@@ -10,6 +10,7 @@ import { AppPreferencesProvider } from "./contexts/AppPreferencesContext";
 import { ProtectedRoute } from "./components/Auth/ProtectedRoute";
 import { FinanceGuard } from "./components/guards/FinanceGuard";
 import { AdminGuard } from "./components/guards/AdminGuard";
+import { LegacyIntegrationGuard } from "./components/guards/LegacyIntegrationGuard";
 import { FinanceLayout } from "./components/finance/layout/FinanceLayout";
 import { AdminLayout } from "./components/admin/layout/AdminLayout";
 import { BirthdayPopup } from "./components/Birthday/BirthdayPopup";
@@ -102,7 +103,11 @@ const App = () => (
                     <Route path="bonus" element={<Bonus />} />
                     
                     <Route path="parcelamento" element={<ParcelamentoInteligente />} />
-                    <Route path="marvee-test" element={<MarveeApiTest />} />
+                    <Route path="marvee-test" element={
+                      <LegacyIntegrationGuard>
+                        <MarveeApiTest />
+                      </LegacyIntegrationGuard>
+                    } />
                     <Route path="orcado-realizado" element={<OrcadoRealizado />} />
                   </Route>
                   
