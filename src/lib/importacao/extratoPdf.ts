@@ -124,7 +124,12 @@ export function parseExtratoItau(texto: string, moeda: Moeda = "BRL"): Resultado
 }
 
 // ----------------------------------------------------------- Santander
-export function parseExtratoSantander(texto: string, moeda: Moeda = "BRL"): ResultadoExtrato {
+export function parseExtratoSantander(
+  texto: string,
+  moeda: Moeda = "BRL",
+  cnpjsConhecidos: Record<string, string> = {},
+): ResultadoExtrato {
+
   const avisos: string[] = [];
   const linhas: LinhaImportada[] = [];
   const ancoras: AncoraSaldo[] = [];
