@@ -4413,6 +4413,17 @@ export type Database = {
       can_manage_finance: { Args: { _user_id: string }; Returns: boolean }
       can_view_finance: { Args: { _user_id: string }; Returns: boolean }
       classificar_lancamento: { Args: { p_id: string }; Returns: string }
+      conciliar_faturas_cartao: {
+        Args: { p_mes: string }
+        Returns: {
+          cartao: string
+          diferenca: number
+          fatura_id: string
+          pago: number
+          status: string
+          valor_total: number
+        }[]
+      }
       cotacao_do_dia: {
         Args: { p_data: string; p_moeda: string }
         Returns: number
@@ -4431,6 +4442,18 @@ export type Database = {
           p_user_id: string
         }
         Returns: undefined
+      }
+      desfazer_lote: {
+        Args: { p_batch_id: string }
+        Returns: {
+          apagados: number
+        }[]
+      }
+      emparelhar_transferencias: {
+        Args: { p_mes: string }
+        Returns: {
+          pares: number
+        }[]
       }
       fin_normalize_text: { Args: { _txt: string }; Returns: string }
       get_budget_vs_actual: {
