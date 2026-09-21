@@ -1,73 +1,67 @@
-# Welcome to your Lovable project
+# Central Financeira
 
-## Project info
+Crie um Painel Financeiro da Empresa Viver de IA com o objetivo de centralizar todas as informações do financeiro e solicitações do time.
+O painel deve ter uma estrutura visual organizada, intuitiva e moderna, com cards, formulários e indicadores claros.
 
-**URL**: https://lovable.dev/projects/2b9a77c3-2713-4947-b992-192fe2649b91
+Objetivos principais:
 
-## How can I edit this code?
+Servir como informativo sobre regras e políticas do financeiro (reembolso, prazos, formas de pagamento, notas fiscais, etc.).
 
-There are several ways of editing your application.
+Disponibilizar formularios para:
 
-**Use Lovable**
+Solicitação de reembolso (campos: nome, data, motivo, valor, comprovante de pagamento, centro de custo).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2b9a77c3-2713-4947-b992-192fe2649b91) and start prompting.
+Devolução ao cliente (campos: nome do cliente, valor, motivo, número da nota, responsável).
 
-Changes made via Lovable will be committed automatically to this repo.
+Envio de notas fiscais (para prestadores e fornecedores — campos: nome, CNPJ, período de referência, valor, anexo da NF, dados bancários).
 
-**Use your preferred IDE**
+Ter uma seção para atualizações financeiras, com comunicados automáticos ou posts internos (ex: datas de fechamento, alterações de política).
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Incluir um resumo fixo de regras do financeiro, com tópicos como:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Prazo de envio de notas fiscais até o dia 25 de cada mês.
 
-Follow these steps:
+Reembolsos processados até 10 dias após aprovação.
+
+Reembolsos apenas mediante comprovante e autorização.
+
+Devoluções a clientes devem ter justificativa e validação da diretoria.
+
+Pagamentos são feitos toda sexta-feira, conforme cronograma interno.
+
+Permitir visualização dos status das solicitações (ex: “Pendente”, “Aprovado”, “Pago”).
+
+Design desejado:
+
+Layout limpo, com ícones e cores suaves (tons de azul e cinza).
+
+Cards separados por tipo de solicitação.
+
+Botões de ação destacados (“Enviar”, “Solicitar”, “Visualizar status”).
+
+Seções com cabeçalhos claros: Informativos, Solicitações, Notas Fiscais, Atualizações.
+
+Título sugerido: 💼 Central Financeira | Viver de IA
+
+Objetivo final: facilitar a comunicação entre o time e o financeiro, reduzir mensagens soltas e garantir que todas as solicitações sejam feitas de forma padronizada e rastreável.
+
+This project was built with [Lovable](https://lovable.dev).
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/804bb7d2-c29b-4388-9779-c3f0d98cf822).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2b9a77c3-2713-4947-b992-192fe2649b91) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
