@@ -180,10 +180,8 @@ Deno.serve(async (req) => {
       variables: {
         document: { name: `Contrato PJ - ${solicitacao.nome}` },
         signers: [
-          { email: "yago@viverdeia.ai", action: "SIGN", name: "Yago Martins Nunes" },
+          { email: REPRESENTANTE_EMAIL, action: "SIGN", name: REPRESENTANTE_NOME },
           { email: solicitacao.email, action: "SIGN", name: solicitacao.nome },
-          { email: "camila.adegas@viverdeia.ai", action: "SIGN", name: "Camila Adegas" },
-          { email: "sabrina@viverdeia.ai", action: "SIGN", name: "Sabrina Oliveira" },
         ],
         file: null,
       },
