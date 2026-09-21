@@ -41,6 +41,8 @@ import Bonus from "./pages/financeiro/Bonus";
 import ParcelamentoInteligente from "./pages/financeiro/ParcelamentoInteligente";
 import MarveeApiTest from "./pages/financeiro/MarveeApiTest";
 import OrcadoRealizado from "./pages/financeiro/OrcadoRealizado";
+import Classificar from "./pages/financeiro/Classificar";
+import RegrasClassificacao from "./pages/financeiro/RegrasClassificacao";
 
 const queryClient = new QueryClient();
 
@@ -109,6 +111,8 @@ const App = () => (
                       </LegacyIntegrationGuard>
                     } />
                     <Route path="orcado-realizado" element={<OrcadoRealizado />} />
+                    <Route path="classificar" element={<Classificar />} />
+                    <Route path="regras" element={<RegrasClassificacao />} />
                   </Route>
                   
                   <Route path="*" element={<NotFound />} />
