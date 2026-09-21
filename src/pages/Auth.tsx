@@ -152,10 +152,10 @@ const Auth = () => {
       } else {
         // Signup normal - Validar domínio do email
         const emailDomain = email.split('@')[1]?.toLowerCase();
-        const dominiosPermitidos = ['viverdeia.ai', 'g4educacao.com'];
+        const dominiosPermitidos = ['lucianolarrossa.com', 'llmidiaco.com'];
         
         if (!dominiosPermitidos.includes(emailDomain)) {
-          toast.error("Apenas emails @viverdeia.ai ou @g4educacao.com podem se cadastrar");
+          toast.error("Apenas emails @lucianolarrossa.com ou @llmidiaco.com podem se cadastrar");
           setLoading(false);
           return;
         }
