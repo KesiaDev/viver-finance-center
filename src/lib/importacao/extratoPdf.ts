@@ -60,9 +60,9 @@ export function parseExtratoItau(texto: string, moeda: Moeda = "BRL"): Resultado
     const data = parseData(m[1])!;
     const resto = m[2];
     // o valor está sempre no fim da linha; um número solto no meio é CNPJ/CPF
-    const numeros = resto.match(RE_NUM);
     const fimLinha = resto.match(/(-?\d{1,3}(?:[.,]\d{3})*[.,]\d{2})\s*$/);
     const ultimo = fimLinha ? fimLinha[1] : null;
+
 
     const upper = resto.toUpperCase();
 
