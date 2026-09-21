@@ -1090,6 +1090,39 @@ export type Database = {
           },
         ]
       }
+      cotacoes: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          data: string
+          fonte: string
+          id: string
+          moeda: string
+          taxa_brl: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          data: string
+          fonte?: string
+          id?: string
+          moeda: string
+          taxa_brl: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          data?: string
+          fonte?: string
+          id?: string
+          moeda?: string
+          taxa_brl?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       despesa_categorias: {
         Row: {
           ativo: boolean
@@ -1466,6 +1499,76 @@ export type Database = {
           },
         ]
       }
+      faturas_cartao: {
+        Row: {
+          cartao_id: string
+          created_at: string
+          created_by: string | null
+          diferenca: number
+          empresa_id: string | null
+          id: string
+          lancamento_pagamento_id: string | null
+          mes_referencia: string
+          observacao: string | null
+          status: string
+          updated_at: string
+          valor_total: number
+          vencimento: string
+        }
+        Insert: {
+          cartao_id: string
+          created_at?: string
+          created_by?: string | null
+          diferenca?: number
+          empresa_id?: string | null
+          id?: string
+          lancamento_pagamento_id?: string | null
+          mes_referencia: string
+          observacao?: string | null
+          status?: string
+          updated_at?: string
+          valor_total?: number
+          vencimento: string
+        }
+        Update: {
+          cartao_id?: string
+          created_at?: string
+          created_by?: string | null
+          diferenca?: number
+          empresa_id?: string | null
+          id?: string
+          lancamento_pagamento_id?: string | null
+          mes_referencia?: string
+          observacao?: string | null
+          status?: string
+          updated_at?: string
+          valor_total?: number
+          vencimento?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "faturas_cartao_cartao_id_fkey"
+            columns: ["cartao_id"]
+            isOneToOne: false
+            referencedRelation: "contas_financeiras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "faturas_cartao_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "faturas_cartao_lancamento_pagamento_id_fkey"
+            columns: ["lancamento_pagamento_id"]
+            isOneToOne: false
+            referencedRelation: "lancamentos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ferramentas: {
         Row: {
           ativo: boolean
@@ -1541,7 +1644,8 @@ export type Database = {
           id: string
           key: string
           updated_at: string
-          value: number
+          value: number | null
+          value_text: string | null
         }
         Insert: {
           created_at?: string
@@ -1549,7 +1653,8 @@ export type Database = {
           id?: string
           key: string
           updated_at?: string
-          value?: number
+          value?: number | null
+          value_text?: string | null
         }
         Update: {
           created_at?: string
@@ -1557,7 +1662,8 @@ export type Database = {
           id?: string
           key?: string
           updated_at?: string
-          value?: number
+          value?: number | null
+          value_text?: string | null
         }
         Relationships: []
       }
@@ -1821,6 +1927,78 @@ export type Database = {
         }
         Relationships: []
       }
+      import_batches: {
+        Row: {
+          conta_id: string
+          created_at: string
+          created_by: string | null
+          desfeito_em: string | null
+          empresa_id: string | null
+          formato: string
+          id: string
+          linhas_duplicadas: number
+          linhas_gravadas: number
+          linhas_total: number
+          mes_referencia: string
+          nome_ficheiro: string | null
+          saldo_final_extrato: number | null
+          total_entradas: number
+          total_saidas: number
+          updated_at: string
+        }
+        Insert: {
+          conta_id: string
+          created_at?: string
+          created_by?: string | null
+          desfeito_em?: string | null
+          empresa_id?: string | null
+          formato: string
+          id?: string
+          linhas_duplicadas?: number
+          linhas_gravadas?: number
+          linhas_total?: number
+          mes_referencia: string
+          nome_ficheiro?: string | null
+          saldo_final_extrato?: number | null
+          total_entradas?: number
+          total_saidas?: number
+          updated_at?: string
+        }
+        Update: {
+          conta_id?: string
+          created_at?: string
+          created_by?: string | null
+          desfeito_em?: string | null
+          empresa_id?: string | null
+          formato?: string
+          id?: string
+          linhas_duplicadas?: number
+          linhas_gravadas?: number
+          linhas_total?: number
+          mes_referencia?: string
+          nome_ficheiro?: string | null
+          saldo_final_extrato?: number | null
+          total_entradas?: number
+          total_saidas?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "import_batches_conta_id_fkey"
+            columns: ["conta_id"]
+            isOneToOne: false
+            referencedRelation: "contas_financeiras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "import_batches_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lancamento_anexos: {
         Row: {
           arquivo_url: string
@@ -1870,12 +2048,14 @@ export type Database = {
           descricao: string
           empresa_id: string
           external_id: string | null
+          fatura_id: string | null
           hash_dedup: string | null
           id: string
           import_batch_id: string | null
           moeda_original: string
           observacao: string | null
           pago_por_socio: string | null
+          par_transferencia_id: string | null
           produto: string | null
           raw: Json | null
           regra_id: string | null
@@ -1900,12 +2080,14 @@ export type Database = {
           descricao?: string
           empresa_id: string
           external_id?: string | null
+          fatura_id?: string | null
           hash_dedup?: string | null
           id?: string
           import_batch_id?: string | null
           moeda_original?: string
           observacao?: string | null
           pago_por_socio?: string | null
+          par_transferencia_id?: string | null
           produto?: string | null
           raw?: Json | null
           regra_id?: string | null
@@ -1930,12 +2112,14 @@ export type Database = {
           descricao?: string
           empresa_id?: string
           external_id?: string | null
+          fatura_id?: string | null
           hash_dedup?: string | null
           id?: string
           import_batch_id?: string | null
           moeda_original?: string
           observacao?: string | null
           pago_por_socio?: string | null
+          par_transferencia_id?: string | null
           produto?: string | null
           raw?: Json | null
           regra_id?: string | null
@@ -1974,6 +2158,20 @@ export type Database = {
             columns: ["empresa_id"]
             isOneToOne: false
             referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lancamentos_fatura_id_fkey"
+            columns: ["fatura_id"]
+            isOneToOne: false
+            referencedRelation: "faturas_cartao"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lancamentos_par_transferencia_id_fkey"
+            columns: ["par_transferencia_id"]
+            isOneToOne: false
+            referencedRelation: "lancamentos"
             referencedColumns: ["id"]
           },
           {
@@ -2489,6 +2687,57 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: []
+      }
+      modelos_importacao: {
+        Row: {
+          conta_id: string
+          created_at: string
+          created_by: string | null
+          empresa_id: string | null
+          formato: string
+          id: string
+          mapeamento: Json
+          nome: string | null
+          updated_at: string
+        }
+        Insert: {
+          conta_id: string
+          created_at?: string
+          created_by?: string | null
+          empresa_id?: string | null
+          formato: string
+          id?: string
+          mapeamento?: Json
+          nome?: string | null
+          updated_at?: string
+        }
+        Update: {
+          conta_id?: string
+          created_at?: string
+          created_by?: string | null
+          empresa_id?: string | null
+          formato?: string
+          id?: string
+          mapeamento?: Json
+          nome?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "modelos_importacao_conta_id_fkey"
+            columns: ["conta_id"]
+            isOneToOne: false
+            referencedRelation: "contas_financeiras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "modelos_importacao_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       monthly_planning: {
         Row: {
@@ -3139,6 +3388,63 @@ export type Database = {
           },
           {
             foreignKeyName: "regras_classificacao_empresa_id_fkey"
+            columns: ["empresa_id"]
+            isOneToOne: false
+            referencedRelation: "empresas"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      saldos_bancarios: {
+        Row: {
+          conta_id: string
+          created_at: string
+          created_by: string | null
+          data: string
+          empresa_id: string | null
+          id: string
+          moeda: string
+          origem: string
+          saldo_brl: number | null
+          saldo_original: number
+          updated_at: string
+        }
+        Insert: {
+          conta_id: string
+          created_at?: string
+          created_by?: string | null
+          data: string
+          empresa_id?: string | null
+          id?: string
+          moeda?: string
+          origem?: string
+          saldo_brl?: number | null
+          saldo_original: number
+          updated_at?: string
+        }
+        Update: {
+          conta_id?: string
+          created_at?: string
+          created_by?: string | null
+          data?: string
+          empresa_id?: string | null
+          id?: string
+          moeda?: string
+          origem?: string
+          saldo_brl?: number | null
+          saldo_original?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saldos_bancarios_conta_id_fkey"
+            columns: ["conta_id"]
+            isOneToOne: false
+            referencedRelation: "contas_financeiras"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "saldos_bancarios_empresa_id_fkey"
             columns: ["empresa_id"]
             isOneToOne: false
             referencedRelation: "empresas"
@@ -4107,6 +4413,25 @@ export type Database = {
       can_manage_finance: { Args: { _user_id: string }; Returns: boolean }
       can_view_finance: { Args: { _user_id: string }; Returns: boolean }
       classificar_lancamento: { Args: { p_id: string }; Returns: string }
+      conciliar_faturas_cartao: {
+        Args: { p_mes: string }
+        Returns: {
+          cartao: string
+          diferenca: number
+          fatura_id: string
+          pago: number
+          status: string
+          valor_total: number
+        }[]
+      }
+      cotacao_do_dia: {
+        Args: { p_data: string; p_moeda: string }
+        Returns: number
+      }
+      cotacao_ultimo_dia_mes: {
+        Args: { p_ano: number; p_mes: number; p_moeda: string }
+        Returns: number
+      }
       create_notification: {
         Args: {
           p_action: string
@@ -4117,6 +4442,18 @@ export type Database = {
           p_user_id: string
         }
         Returns: undefined
+      }
+      desfazer_lote: {
+        Args: { p_batch_id: string }
+        Returns: {
+          apagados: number
+        }[]
+      }
+      emparelhar_transferencias: {
+        Args: { p_mes: string }
+        Returns: {
+          pares: number
+        }[]
       }
       fin_normalize_text: { Args: { _txt: string }; Returns: string }
       get_budget_vs_actual: {
