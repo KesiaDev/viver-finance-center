@@ -223,7 +223,7 @@ function createMonthlyEmbed(
       },
     ],
     footer: {
-      text: "Viver de IA • Relatório Automático",
+      text: "LLMIDA Central Financeira • Relatório Automático",
     },
     timestamp: new Date().toISOString(),
   };
@@ -309,7 +309,7 @@ function createAnnualEmbed(
       },
     ],
     footer: {
-      text: "Viver de IA • Relatório Anual",
+      text: "LLMIDA Central Financeira • Relatório Anual",
     },
     timestamp: new Date().toISOString(),
   };
