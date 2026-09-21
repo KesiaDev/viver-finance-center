@@ -6,6 +6,11 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+// Representante legal da LLMIDIA que assina os contratos
+const REPRESENTANTE_NOME = Deno.env.get("CONTRATO_REPRESENTANTE_NOME") ?? "Luciano Larrossa";
+const REPRESENTANTE_EMAIL = Deno.env.get("CONTRATO_REPRESENTANTE_EMAIL") ?? "luciano@llmidiaco.com";
+
+
 function isHtmlContent(text: string): boolean {
   const trimmed = text.trim();
   return (
@@ -139,7 +144,7 @@ Deno.serve(async (req) => {
       const hoje = new Date();
       const meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
       const dataAssinatura = `${hoje.getDate()} de ${meses[hoje.getMonth()]} de ${hoje.getFullYear()}`;
-      return `CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\nPelo presente instrumento particular de contrato de prestação de serviços ("Contrato"), de um lado:\n\nCONTRATANTE: VIVER DE IA LTDA., pessoa jurídica de direito privado, inscrita no CNPJ sob nº 52.246.066/0001-60, com sede na Rua Alfredo Egídio de Souza Aranha, nº 100, Bloco B - 4º Andar, Chácara Santo Antônio, São Paulo/SP, CEP 04726-170, neste ato representada por seu sócio-administrador, Yago Martins Nunes.\n\nCONTRATADA: ${solicitacao.nome}, ${solicitacao.cnpj ? `pessoa jurídica de direito privado, inscrita no CNPJ sob nº ${solicitacao.cnpj}, ` : ""}com endereço em ${solicitacao.endereco}.\n\nSão Paulo, ${dataAssinatura}.`;
+      return `CONTRATO DE PRESTAÇÃO DE SERVIÇOS\n\nPelo presente instrumento particular de contrato de prestação de serviços ("Contrato"), de um lado:\n\nCONTRATANTE: LLMIDIA - CURSOS E TREINAMENTOS LTDA., pessoa jurídica de direito privado, inscrita no CNPJ sob nº 28.469.058/0001-06, com sede na Av. Presidente Juscelino Kubitschek de Oliveira, nº 3161, Apt 410, Centro, Pelotas/RS, CEP 96.020-045, neste ato representada por seu sócio-administrador, ${REPRESENTANTE_NOME}.\n\nCONTRATADA: ${solicitacao.nome}, ${solicitacao.cnpj ? `pessoa jurídica de direito privado, inscrita no CNPJ sob nº ${solicitacao.cnpj}, ` : ""}com endereço em ${solicitacao.endereco}.\n\nPelotas, ${dataAssinatura}.`;
     };
 
     // PREVIEW MODE
@@ -180,10 +185,8 @@ Deno.serve(async (req) => {
       variables: {
         document: { name: `Contrato PJ - ${solicitacao.nome}` },
         signers: [
-          { email: "yago@viverdeia.ai", action: "SIGN", name: "Yago Martins Nunes" },
+          { email: REPRESENTANTE_EMAIL, action: "SIGN", name: REPRESENTANTE_NOME },
           { email: solicitacao.email, action: "SIGN", name: solicitacao.nome },
-          { email: "camila.adegas@viverdeia.ai", action: "SIGN", name: "Camila Adegas" },
-          { email: "sabrina@viverdeia.ai", action: "SIGN", name: "Sabrina Oliveira" },
         ],
         file: null,
       },
