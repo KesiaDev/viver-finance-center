@@ -45,7 +45,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="dark" storageKey="viver-de-ia-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="llmidia-theme">
       <AuthProvider>
         <DuplicateProvider>
           <AppPreferencesProvider>

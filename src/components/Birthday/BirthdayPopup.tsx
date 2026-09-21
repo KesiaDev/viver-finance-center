@@ -113,7 +113,7 @@ export const BirthdayPopup = () => {
               Parabéns pelo seu dia especial!
               <br />
               <br />
-              Toda a equipe <span className="font-semibold text-primary">Viver de IA</span> deseja 
+              Toda a equipe <span className="font-semibold text-primary">LLMIDIA Central Financeira</span> deseja 
               muitas felicidades e sucesso!
             </DialogDescription>
           </DialogHeader>

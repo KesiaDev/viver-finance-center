@@ -79,7 +79,7 @@ function buildEmbed(payload: NotificationPayload) {
       color: COLORS[type],
       fields,
       timestamp: new Date().toISOString(),
-      footer: { text: 'Sistema Viver de IA' },
+      footer: { text: 'Sistema LLMIDIA Central Financeira' },
     }],
   };
 }

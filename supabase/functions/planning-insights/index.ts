@@ -173,10 +173,10 @@ Quando houver projeções futuras, destaque que ainda há tempo para ajustar o p
 
 IMPORTANTE: Responda APENAS com o JSON válido no formato especificado, sem markdown, sem código, sem explicações adicionais.`;
 
-    const userPrompt = `Analise os seguintes dados financeiros da empresa Viver de IA e forneça insights estratégicos.
+    const userPrompt = `Analise os seguintes dados financeiros da empresa LLMIDIA Central Financeira e forneça insights estratégicos.
 
 CONTEXTO:
-- Empresa: Viver de IA (educação em IA)
+- Empresa: LLMIDIA Central Financeira (gestão financeira)
 - Período Analisado: ${selectedPeriod}
 - Data da Análise: ${currentDate.toLocaleDateString('pt-BR')}
 - Regime Tributário: Lucro Presumido (a partir de Nov/2025)

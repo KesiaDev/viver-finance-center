@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import viverDeIaLogo from "@/assets/viver-de-ia-logo-white.png";
+import llmidiaLogo from "@/assets/llmidia-logo-white.png";
 
 interface LogoProps {
   className?: string;
@@ -15,9 +15,12 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
 
   return (
     <img 
-      src={viverDeIaLogo} 
-      alt="Viver de IA" 
+      src={llmidiaLogo} 
+      alt="LLMIDIA Central Financeira" 
       className={cn(sizeClasses[size], "w-auto", className)}
+      loading="lazy"
+      width={1920}
+      height={960}
     />
   );
 };

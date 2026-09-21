@@ -24,7 +24,7 @@ export const useContratos = () => {
 
   const updateStatus = useMutation({
     mutationFn: async ({ id, status, comentario }: { id: string; status: string; comentario?: string }) => {
-      const updateData: Record<string, unknown> = { status };
+      const updateData: Partial<SolicitacaoContrato> = { status };
       if (status === "rejeitado" && comentario) {
         updateData.status_comentario = comentario;
       } else if (status !== "rejeitado") {
@@ -90,7 +90,7 @@ export const useContratos = () => {
   });
 
   const editContrato = useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Record<string, unknown> }) => {
+    mutationFn: async ({ id, data }: { id: string; data: Partial<SolicitacaoContrato> }) => {
       const { error } = await supabase
         .from("solicitacoes_contrato")
         .update(data)
