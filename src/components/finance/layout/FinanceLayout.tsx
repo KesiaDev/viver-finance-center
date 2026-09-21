@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import { Header } from "@/components/Layout/Header";
 import { Navigation } from "@/components/Layout/Navigation";
 import { FinanceNavigation } from "./FinanceNavigation";
+import { EmpresaSelector } from "./EmpresaSelector";
+import { EmpresaProvider } from "@/contexts/EmpresaContext";
 
 interface FinanceLayoutProps {
   children?: ReactNode;
@@ -11,20 +13,27 @@ interface FinanceLayoutProps {
 
 export const FinanceLayout = ({ children, title }: FinanceLayoutProps) => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <Navigation />
-      <FinanceNavigation />
-      <main className="container mx-auto p-4 md:p-6 lg:p-8">
-        {title && (
-          <div className="mb-6">
-            <h1 className="text-2xl md:text-3xl font-bold text-foreground">
-              {title}
-            </h1>
+    <EmpresaProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <Navigation />
+        <FinanceNavigation />
+        <div className="border-b border-subtle bg-card">
+          <div className="container mx-auto flex justify-end px-4 py-2">
+            <EmpresaSelector />
           </div>
-        )}
-        {children || <Outlet />}
-      </main>
-    </div>
+        </div>
+        <main className="container mx-auto p-4 md:p-6 lg:p-8">
+          {title && (
+            <div className="mb-6">
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground">
+                {title}
+              </h1>
+            </div>
+          )}
+          {children || <Outlet />}
+        </main>
+      </div>
+    </EmpresaProvider>
   );
 };

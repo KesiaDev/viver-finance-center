@@ -339,7 +339,7 @@ export function PlanningTable({
       return true;
     }
 
-    // Impostos e Taxa Hubla: editáveis passado/atual, bloqueados futuro
+    // Impostos e Taxa da plataforma: editáveis passado/atual, bloqueados futuro
     if (['tax', 'platform_fee'].includes(field)) {
       return monthType !== 'future';
     }
@@ -395,7 +395,7 @@ export function PlanningTable({
                     <PopoverTrigger asChild>
                       <button className="flex items-center gap-1 hover:text-fuchsia-400 transition-colors cursor-pointer ml-auto">
                         <HublaFeeTooltip showIcon feePercentage={hublaFeePercentage}>
-                          Taxa Hubla ({hublaFeePercentage}%)
+                          Taxa da plataforma ({hublaFeePercentage}%)
                         </HublaFeeTooltip>
                         <Pencil className="h-3 w-3 opacity-60" />
                       </button>
@@ -403,7 +403,7 @@ export function PlanningTable({
                     <PopoverContent className="w-64" align="end">
                       <div className="space-y-3">
                         <div>
-                          <h4 className="font-medium text-sm">Editar Taxa Hubla</h4>
+                          <h4 className="font-medium text-sm">Editar Taxa da plataforma</h4>
                           <p className="text-xs text-muted-foreground">
                             Percentual aplicado sobre a receita bruta
                           </p>

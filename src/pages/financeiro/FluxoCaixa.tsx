@@ -12,6 +12,8 @@ import { MarveeMappingDialog } from "@/components/finance/cash-flow/MarveeMappin
 import { useCashFlowData } from "@/hooks/useCashFlowData";
 import { useCashFlowDataDetailed } from "@/hooks/useCashFlowDataDetailed";
 import { useAppPreferences } from "@/contexts/AppPreferencesContext";
+import { useLegacyIntegrations } from "@/hooks/useLegacyIntegrations";
+import { LegacyDataSourceNotice } from "@/components/finance/legacy/LegacyDataSourceNotice";
 
 const FluxoCaixa = () => {
   const {
@@ -28,6 +30,7 @@ const FluxoCaixa = () => {
   const year = parseInt(financialYear);
   const setYear = (y: number) => setFinancialYear(y.toString());
   
+  const { legacyIntegrationsEnabled } = useLegacyIntegrations();
   const [showMappingDialog, setShowMappingDialog] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("aggregated");
 
@@ -54,6 +57,7 @@ const FluxoCaixa = () => {
   return (
     <div className="space-y-6">
         <UnderConstructionBanner />
+        {!legacyIntegrationsEnabled && <LegacyDataSourceNotice />}
         
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -70,10 +74,12 @@ const FluxoCaixa = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <MarveeSyncButton 
-              year={year} 
-              onOpenMappings={() => setShowMappingDialog(true)} 
-            />
+            {legacyIntegrationsEnabled && (
+              <MarveeSyncButton 
+                year={year} 
+                onOpenMappings={() => setShowMappingDialog(true)} 
+              />
+            )}
             <CashFlowExportButton
               rows={rows}
               months={months}
@@ -83,10 +89,12 @@ const FluxoCaixa = () => {
           </div>
         </div>
 
-        <MarveeMappingDialog 
-          open={showMappingDialog} 
-          onOpenChange={setShowMappingDialog} 
-        />
+        {legacyIntegrationsEnabled && (
+          <MarveeMappingDialog 
+            open={showMappingDialog} 
+            onOpenChange={setShowMappingDialog} 
+          />
+        )}
 
         {/* Filters */}
         <Card>

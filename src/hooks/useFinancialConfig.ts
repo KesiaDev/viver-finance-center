@@ -56,11 +56,11 @@ export function useFinancialConfig() {
     },
     onSuccess: (newPercentage) => {
       queryClient.invalidateQueries({ queryKey: ["financial-config"] });
-      toast.success(`Taxa Hubla atualizada para ${newPercentage}%`);
+      toast.success(`Taxa da plataforma atualizada para ${newPercentage}%`);
     },
     onError: (error) => {
       console.error("Error updating Hubla fee:", error);
-      toast.error("Erro ao atualizar taxa Hubla");
+      toast.error("Erro ao atualizar taxa da plataforma");
     },
   });
 

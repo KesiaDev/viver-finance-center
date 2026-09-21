@@ -325,7 +325,7 @@ export const useFinancialAnalysis = (
 
     return [
       { name: 'Operacionais', value: operacional, fill: '#ef4444' },
-      { name: 'Taxa Hubla', value: taxaHubla, fill: '#f97316' },
+      { name: 'Taxa da plataforma', value: taxaHubla, fill: '#f97316' },
       { name: 'Impostos', value: impostos, fill: '#eab308' },
     ].filter(item => item.value > 0);
   }, [planningData, monthsToInclude, hublaFeePercentage]);

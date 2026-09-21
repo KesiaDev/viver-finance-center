@@ -60,7 +60,7 @@ export function HublaFeeTooltip({
             {/* Header */}
             <div className="flex items-center gap-2 font-semibold text-fuchsia-600 dark:text-fuchsia-400">
               <Info className="h-4 w-4" />
-              Taxa da Plataforma (Hubla)
+              Taxa da plataforma
             </div>
 
             {isDetailedMode ? (
@@ -94,7 +94,7 @@ export function HublaFeeTooltip({
                       Receita Total: {formatCurrency(totalRevenue)}
                     </div>
                     <div className="grid grid-cols-2 gap-x-4 text-xs">
-                      <span>Taxa Hubla ({feePercentage}%):</span>
+                      <span>Taxa da plataforma ({feePercentage}%):</span>
                       <span className="text-right font-medium">{formatCurrency(platformFee)}</span>
                     </div>
                     <div className="text-xs font-mono bg-muted px-2 py-1 rounded mt-1">
@@ -104,7 +104,7 @@ export function HublaFeeTooltip({
                 ) : (
                   <div className="space-y-1 pt-2 border-t">
                     <p className="text-xs text-muted-foreground">
-                      Valor informado manualmente baseado na taxa real cobrada pela Hubla.
+                      Valor informado manualmente baseado na taxa real cobrada pela plataforma.
                     </p>
                     <div className="flex justify-between text-xs">
                       <span>Valor:</span>
@@ -115,7 +115,7 @@ export function HublaFeeTooltip({
 
                 {/* Total */}
                 <div className="flex justify-between text-sm font-bold pt-2 border-t border-fuchsia-300/30">
-                  <span>TAXA HUBLA:</span>
+                  <span>TAXA DA PLATAFORMA:</span>
                   <span className="text-fuchsia-600 dark:text-fuchsia-400">{formatCurrency(platformFee)}</span>
                 </div>
               </>
@@ -123,7 +123,7 @@ export function HublaFeeTooltip({
               <>
                 {/* Modo genérico (header da tabela) */}
                 <p className="text-xs text-muted-foreground">
-                  Taxa cobrada pela plataforma Hubla sobre todas as vendas realizadas.
+                  Taxa cobrada pela plataforma sobre todas as vendas realizadas.
                 </p>
                 <div className="text-xs space-y-1">
                   <div>• <strong>Meses passados/atual:</strong> Valor real informado manualmente</div>
